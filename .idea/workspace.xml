@@ -10,7 +10,7 @@
       <change afterPath="$PROJECT_DIR$/backend/tsconfig.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/public/AILogo.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/frontend/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/ai_game.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ai_game.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
@@ -53,22 +53,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore_missing_gitignore&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\ZackO\\Desktop\\KEA\\SecondSemester\\Fullstack\\ai_game\\frontend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore_missing_gitignore": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.dev.executor": "Run",
+    "ts.external.directory.path": "C:\\Users\\ZackO\\Desktop\\KEA\\SecondSemester\\Fullstack\\ai_game\\frontend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ZackO\Desktop\KEA\SecondSemester\Fullstack\ai_game\backend\src" />
@@ -109,6 +109,7 @@
       <workItem from="1730283864617" duration="3730000" />
       <workItem from="1730451755243" duration="1454000" />
       <workItem from="1731391650360" duration="2475000" />
+      <workItem from="1731861235701" duration="324000" />
     </task>
     <servers />
   </component>
