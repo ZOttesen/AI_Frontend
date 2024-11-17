@@ -1,0 +1,101 @@
+:root {
+  /* Primære farver */
+  --primary-blue: #dfe0ff;
+  --dark-background: #ffffff;
+  --light-background: #002279 ;
+  --light-text: #f9f9f9 ;
+  --accent-color: #8AC4FF;
+  --button-color: #4A90E2;
+  --fade-color: #0f1e29;
+
+  /* Justering af baggrund og tekst */
+  --navbar-text-color: var(--light-text);
+}
+
+html, body {
+  background-color: var(--light-background);
+  color: var(--light-text);
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+}
+
+#root {
+  background-color: var(--light-background) !important;
+  min-height: 100vh;
+}
+
+.homepage-container {
+  background-color: var(--light-background);
+  color: var(--light-text);
+  padding: 20px;
+  min-height: 100vh; /* Fylder hele højden af skærmen */
+}
+
+.homepage-button:hover {
+  background-color: var(--accent-color);
+}
+
+.btn.btn-outline-primary {
+  background-color: var(--button-color);
+  color: var(--light-text);
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  accent-color: var(--accent-color)
+}
+
+background{
+  background-color: var(--light-background);
+  color: var(--light-text);
+  padding: 20px;
+  min-height: 100vh; /* Fylder hele højden af skærmen */
+}
+
+h1 {
+  color: var(--primary-blue);
+  -webkit-text-stroke: 2px #000; /* Outline farve og tykkelse */
+  font-size: 3rem !important;
+  margin-bottom: 10px;
+}
+
+p {
+  color: var(--light-text);
+  font-size: 1.1rem;
+}
+
+/* Links */
+a {
+  color: var(--primary-blue);
+}
+
+a:hover {
+  color: var(--accent-color);
+}
+
+/* Tilføj lidt padding og rundede kanter til input-felter */
+input[type="text"],
+input[type="password"] {
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+/* Tilføj rundede kanter og padding til knappen */
+button {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  background-color: #007BFF; /* Primær farve til knappen */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/* Hover-effekt til knappen */
+button:hover {
+  background-color: #0056b3; /* Mørkere farve ved hover */
+}

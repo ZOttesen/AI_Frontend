@@ -1,0 +1,33 @@
+.homepage-container {
+    background-color: var(--light-background);
+    color: var(--light-text);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.homepage-title {
+    color: var(--primary-blue);
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.homepage-button {
+    background-color: var(--button-color);
+    color: var(--light-text);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.homepage-button:hover {
+    background-color: var(--accent-color);
+}
+
+a {
+    color: var(--primary-blue);
+}
+
+a:hover {
+    color: var(--accent-color);
+}

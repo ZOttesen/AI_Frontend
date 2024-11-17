@@ -1,0 +1,64 @@
+.navbar-brand {
+    color: var(--navbar-text-color);
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link {
+    color: var(--primary-blue);
+    margin-right: 10px;
+    padding: 5px;
+    pointer-events: all;
+    border: 2px solid transparent;
+    transition: border 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+    border-color: var(--accent-color);
+    color: var(--light-text);
+}
+
+.navbar-logo {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.navbar {
+    background: linear-gradient(to bottom, var(--fade-color), var(--light-background));
+}
+
+.navbar a {
+    color: var(--primary-blue) !important;
+    font-size: 1.1rem;
+}
+
+.dropdown-login {
+    background: var(--light-background);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    z-index: 1000;
+    width: 200px;
+}
+
+.dropdown-login input {
+    margin-bottom: 10px;
+}
+
+.dropdown-login button {
+    background-color: var(--button-color);
+    color: white;
+}
+
+
+    .navbar-collapse {
+    flex-grow: 0;
+}
+
+.nav-item {
+    margin-right: 15px;
+}
