@@ -1,15 +1,15 @@
 import amqp from 'amqplib';
 import { v4 as uuidv4 } from 'uuid'; // Importér UUID generator
+import dotenv from 'dotenv';
 
 const connection = await amqp.connect({
-    protocol: 'amqp',
-    hostname: 'localhost',
-    port: 5672,
-    username: 'user',
-    password: 'password'
+    protocol: process.env.RABBITMQ_PROTOCOL,
+    hostname: process.env.RABBITMQ_HOST,
+    port: Number(process.env.RABBITMQ_PORT),
+    username: process.env.RABBITMQ_USER,
+    password: process.env.RABBITMQ_PASSWORD,
 });
-
-export const sendRequestToRabbitMQ = async (requestPayload: { data: string }): Promise<any> => {
+export const sendRequestToRabbitMQ = async (data: string): Promise<any> => {
     const channel = await connection.createChannel();
 
     const replyQueue = 'amq.rabbitmq.reply-to';
@@ -25,17 +25,14 @@ export const sendRequestToRabbitMQ = async (requestPayload: { data: string }): P
         }, { noAck: true });
 
         const queue = 'request_queue';
-        channel.sendToQueue(queue, Buffer.from(JSON.stringify(requestPayload)), {
-            replyTo: replyQueue,
-            correlationId: correlationId
-        });
+
+        channel.sendToQueue(
+            queue,
+            Buffer.from(JSON.stringify({ text: data })),
+            {
+                replyTo: replyQueue,
+                correlationId: correlationId,
+            }
+        );
     });
 };
-
-sendRequestToRabbitMQ({ data: 'Test message' })
-    .then(response => {
-        console.log("Received response:", response);
-    })
-    .catch(error => {
-        console.error("Error:", error);
-    });

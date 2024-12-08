@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Register.css';
 
+
 const Register: React.FC = () => {
 
     const [username, setUsername] = useState('');
@@ -16,7 +17,7 @@ const Register: React.FC = () => {
 
         try {
             console.log('Registering:', username, firstName, lastName, email, password)
-            const response = await fetch('https://localhost:7186/v1/register', {
+            const response = await fetch(process.env.REACT_APP_AUTH_URL + 'register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

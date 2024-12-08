@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "dev": "nodemon --watch src --exec \"npm run build && node dist/app.js\"",
-    "start": "node dist/app.js"
+    "start": "node dist/app.js",
+    "dev": "nodemon src/app.ts"
   },
   "dependencies": {
     "amqplib": "^0.10.4",
@@ -17,8 +17,10 @@
     "@types/amqplib": "^0.10.5",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
-    "@types/node": "^18.0.0",
+    "@types/node": "^18.19.67",
+    "dotenv": "^16.4.7",
     "nodemon": "^2.0.22",
-    "typescript": "^5.6.3"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   }
 }

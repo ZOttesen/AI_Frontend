@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Homepage.css';
 import {sendMessageToRabbitMQ} from "../../utility/APIService";
+import {audioService} from "../../utility/AudioPlayer";
 
 const Homepage: React.FC = () => {
     const handleButtonClick = async () => {
@@ -11,6 +12,10 @@ const Homepage: React.FC = () => {
         } else {
             console.error("Failed to send message:", result.message);
         }
+        audioService.playAudio(result.response.audio_url);
+    };
+    const playSoundFileButton = async () => {
+        audioService.playAudio('/7524161641702421710.mp3');
     };
 
 
@@ -21,8 +26,13 @@ const Homepage: React.FC = () => {
             <button type="button" className="homepage-button" onClick={handleButtonClick}>
                 Primary
             </button>
+
+            <button type="button" className="homepage-button" onClick={playSoundFileButton}>
+                Play
+            </button>
             <Link to="/rules">Read the Rules</Link>
         </div>
+
     );
 };
 
