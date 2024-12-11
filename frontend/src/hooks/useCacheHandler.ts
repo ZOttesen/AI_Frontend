@@ -1,6 +1,10 @@
+// useCacheHandler.ts
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query';
+import {useState} from "react";
 
 export const useCacheHandler = <T>(cacheKey: string, initialData: T | null = null) => {
+    const [trigger, setTrigger] = useState(0); // Brug en trigger for at spore ændringer
+
     const queryClient = useQueryClient();
 
     const saveToLocalStorage = (data: T) => {
@@ -15,22 +19,27 @@ export const useCacheHandler = <T>(cacheKey: string, initialData: T | null = nul
     const { data: cachedData } = useQuery<T | null>({
         queryKey: [cacheKey],
         queryFn: () => loadFromLocalStorage(),
-        initialData: null,
+        initialData: initialData,
     });
 
     const { mutate: saveToCache } = useMutation({
         mutationFn: async (data: T) => {
-            queryClient.setQueryData([cacheKey], data); // Gem i React Query
-            saveToLocalStorage(data); // Gem i localStorage
+            console.log('Saving to cache:', data);
+            saveToLocalStorage(data);
             return data;
+        },
+        onSuccess: (data) => {
+            queryClient.setQueryData([cacheKey], data);
+            setTrigger(prev => prev + 1); // Opdater trigger
         },
     });
 
     const clearCache = () => {
         queryClient.removeQueries({ queryKey: [cacheKey], exact: true });
-        queryClient.setQueryData([cacheKey], null); // Sæt React Query cache til null
-        localStorage.removeItem(cacheKey); // Fjern fra localStorage
+        queryClient.setQueryData([cacheKey], null);
+        localStorage.removeItem(cacheKey);
+        setTrigger(prev => prev + 1);
     };
 
-    return { cachedData, saveToCache, clearCache };
+    return { cachedData, saveToCache, clearCache, trigger };
 };

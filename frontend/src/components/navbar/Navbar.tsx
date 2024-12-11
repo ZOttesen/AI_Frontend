@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../utility/AuthContext';
 import './Navbar.css';
+import {logoutUser} from "../../utility/APIService";
 
 const Navbar: React.FC = () => {
     const { user, isLoggedIn, login, logout } = useAuth();
@@ -9,6 +10,8 @@ const Navbar: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -31,18 +34,34 @@ const Navbar: React.FC = () => {
     }, []);
 
     // Handle login
+
     const handleLogin = async () => {
+        setIsLoading(true);
         try {
-            const success = await login(email, password); // Kald login-funktionen
+            const success = await login(email, password);
             if (!success) {
-                setError('Invalid credentials. Please try again.');
+                setError('Invalid email or password. Please try again.');
             } else {
                 setError('');
-                setDropdownVisible(false); // Close dropdown on successful login
+                setDropdownVisible(false);
             }
         } catch (e) {
             console.error('Login error:', e);
             setError('An unexpected error occurred.');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+
+    const handleLogout = async () => {
+        try {
+            await logoutUser(); // Kald backend for at slette cookie
+            logout(); // Nulstil AuthContext
+            window.location.href = '/login'; // Omdiriger til login-siden
+        } catch (error) {
+            console.error('Logout error:', error);
+            alert('Failed to log out. Please try again.');
         }
     };
 
@@ -116,11 +135,9 @@ const Navbar: React.FC = () => {
                                                     />
                                                 </div>
                                                 {error && <div className="text-danger">{error}</div>}
-                                                <button
-                                                    type="submit"
-                                                    className="btn btn-primary w-100"
-                                                >
-                                                    Login
+                                                <button type="submit" className="btn btn-primary w-100"
+                                                        disabled={isLoading}>
+                                                    {isLoading ? 'Logging in...' : 'Login'}
                                                 </button>
                                             </form>
                                         </div>

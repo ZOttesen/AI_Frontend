@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0cb307f6-c20d-4683-bb0b-060d7592ef18" name="Changes" comment="eh?">
-      <change afterPath="$PROJECT_DIR$/backend/nodemon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/app.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/rabbitmqClient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/rabbitmqClient.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/backend/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/register/Register.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/register/Register.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/navbar/Navbar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/navbar/Navbar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useCacheHandler.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/useCacheHandler.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/utility/APIService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utility/APIService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/utility/AuthContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/utility/AuthContext.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,6 +130,7 @@
       <workItem from="1733045892239" duration="3987000" />
       <workItem from="1733064483826" duration="596000" />
       <workItem from="1733400721397" duration="14000" />
+      <workItem from="1733732310770" duration="8000" />
     </task>
     <task id="LOCAL-00001" summary="eh?">
       <option name="closed" value="true" />

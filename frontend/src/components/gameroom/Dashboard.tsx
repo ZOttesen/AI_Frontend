@@ -8,7 +8,7 @@ const CACHE_KEY = 'DashboardPreferences';
 
 const Dashboard: React.FC = () => {
     // Initialiser cachehandler med inputparametre
-    const { cachedData, saveToCache, clearCache } = useCacheHandler<{
+    const { cachedData, saveToCache, clearCache, trigger } = useCacheHandler<{
         selectedPersonality: PersonalityType | null;
         selectedLanguage: LanguageChoice | null;
         customCategories: string[];
@@ -37,7 +37,7 @@ const Dashboard: React.FC = () => {
             setCustomCategories(cachedData.customCategories);
             setShowMatrix(true);
         }
-    }, [cachedData]);
+    }, [cachedData, trigger]);
 
     const handleSubmit = () => {
         if (!selectedPersonality || !selectedLanguage) {
@@ -60,11 +60,11 @@ const Dashboard: React.FC = () => {
     };
 
     const handleReset = () => {
-        clearCache(); // Ryd cache og localStorage
+        clearCache();
         setSelectedPersonality(null);
         setSelectedLanguage(null);
         setCustomCategories(['', '', '']);
-        setShowMatrix(false); // Skift til formularvisning
+        setShowMatrix(false);
     };
 
     const generateMatrixData = () => {
