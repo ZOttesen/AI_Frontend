@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {answerMessageToRabbitMQ, RabbitMQAnswer} from '../../utility/APIService';
 import { useCacheHandler } from '../../hooks/useCacheHandler';
 import { PersonalityType, LanguageChoice } from '../../utility/Enums';
+import {audioService} from "../../utility/AudioPlayer";
 
 interface ModalProps {
     isVisible: boolean;
@@ -11,6 +12,7 @@ interface ModalProps {
 }
 const Modal: React.FC<ModalProps> = ({ isVisible, onClose, initialMessage }) => {
     const [userInput, setUserInput] = useState<string>(''); // Brugerens input
+    const [modalMessage, setModalMessage] = useState<string | undefined>(); // Tilføjet state til Rabbit
     const { cachedData } = useCacheHandler('DashboardPreferences', {
         selectedPersonality: PersonalityType.FRIENDLY,
         selectedLanguage: LanguageChoice.ENGLISH,
@@ -36,6 +38,19 @@ const Modal: React.FC<ModalProps> = ({ isVisible, onClose, initialMessage }) => 
         try {
             const response = await answerMessageToRabbitMQ(message);
             console.log('RabbitMQ Response:', response);
+
+            if (response.success && response.response) {
+                const { audio_url, text } = response.response;
+
+                setModalMessage(text);
+
+                // Afspil lydfilen fra audio_url
+                if (audio_url) {
+                    audioService.playAudio(audio_url);
+                } else {
+                    console.warn('No audio URL provided in the response.');
+                }
+            }
             alert(response.success ? 'Message sent successfully!' : `Error: ${response}`);
         } catch (error) {
             console.error('Error sending message to RabbitMQ:', error);
@@ -47,6 +62,7 @@ const Modal: React.FC<ModalProps> = ({ isVisible, onClose, initialMessage }) => 
         <div style={modalStyles.overlay}>
             <div style={modalStyles.modal}>
                 <p>{initialMessage}</p>
+                <p>{modalMessage}</p>
                 <input
                     type="text"
                     placeholder="Enter your response"

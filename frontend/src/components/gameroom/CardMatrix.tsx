@@ -43,10 +43,8 @@ const CardMatrix: React.FC<CardMatrixProps> = ({ cards }) => {
             if (response.success && response.response) {
                 const { audio_url, text } = response.response;
 
-                // Gem beskeden som initialMessage
                 setInitialMessage(text);
 
-                // Opdater modal med en statusbesked
                 setModalMessage(`Message from RabbitMQ received.`);
 
                 // Afspil lydfilen fra audio_url
@@ -57,7 +55,7 @@ const CardMatrix: React.FC<CardMatrixProps> = ({ cards }) => {
                 }
             } else {
                 setModalMessage(`Error: ${response.message || 'Unknown error'}`);
-                audioService.playAudio('/audio/error.mp3'); // Brug en standard-fejllyd
+                audioService.playAudio('/audio/error.mp3');
             }
         } catch (error) {
             setModalMessage('An unexpected error occurred.');

@@ -38,6 +38,8 @@ const consumeReply = (channel: Channel, replyQueue: string, correlationId: strin
         channel.consume(
             replyQueue,
             (msg: ConsumeMessage | null) => {
+                console.log('Received reply from RabbitMQ');
+                console.log(msg?.content.toString());
                 if (msg && msg.properties.correlationId === correlationId) {
                     const responseContent = JSON.parse(msg.content.toString());
                     resolve(responseContent);
@@ -74,7 +76,7 @@ export const sendAnswerToRabbitMQ = async (data: any): Promise<any> => {
     const correlationId = uuidv4();
 
     const consumePromise = consumeReply(channel, replyQueue, correlationId);
-    await sendMessageToQueue(channel, 'request_queue', data, replyQueue, correlationId);
+    await sendMessageToQueue(channel, 'answer_queue', data, replyQueue, correlationId);
 
     return consumePromise;
 };
