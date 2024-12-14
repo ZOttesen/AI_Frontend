@@ -25,7 +25,7 @@
 }
 
 .navbar {
-    background: linear-gradient(to bottom, var(--fade-color), var(--light-background));
+    background: linear-gradient(to bottom, var(--fade-color), var(--dark-background));
 }
 
 .navbar a {

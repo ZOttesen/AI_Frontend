@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Card from './Card';
 import Modal from './Modal';
 import { sendMessageToRabbitMQ } from '../../utility/APIService';
 import { useCacheHandler } from '../../hooks/useCacheHandler';
@@ -11,18 +10,19 @@ interface CardMatrixProps {
     cards: { category: string; points: number }[];
 }
 
-interface UserPreferences {
-    selectedPersonality: PersonalityType | null;
-    selectedLanguage: LanguageChoice | null;
-}
-
 const CardMatrix: React.FC<CardMatrixProps> = ({ cards }) => {
-    const { cachedData } = useCacheHandler<UserPreferences>('DashboardPreferences');
+    const { cachedData } = useCacheHandler<any>('DashboardPreferences');
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [modalMessage, setModalMessage] = useState<string | undefined>();
-    const [initialMessage, setInitialMessage] = useState<string | undefined>(); // Tilføjet state til RabbitMQ's første besked
+    const [initialMessage, setInitialMessage] = useState<string | undefined>();
+    const [clickedCards, setClickedCards] = useState<string[]>([]);
+
 
     const handleCardClick = async (category: string, points: number) => {
+        if (clickedCards.includes(category)) return;
+
+        setClickedCards((prev) => [...prev, category]);
+
         const message: RabbitMQMessage = {
             category,
             points,
@@ -32,9 +32,7 @@ const CardMatrix: React.FC<CardMatrixProps> = ({ cards }) => {
             },
         };
 
-        console.log(message.preferences);
-
-        setIsModalVisible(true); // Vis modal, når knappen trykkes
+        setIsModalVisible(true);
         setModalMessage('Sending message...');
 
         try {
@@ -44,56 +42,50 @@ const CardMatrix: React.FC<CardMatrixProps> = ({ cards }) => {
                 const { audio_url, text } = response.response;
 
                 setInitialMessage(text);
+                setModalMessage('Message from RabbitMQ received.');
 
-                setModalMessage(`Message from RabbitMQ received.`);
-
-                // Afspil lydfilen fra audio_url
                 if (audio_url) {
                     audioService.playAudio(audio_url);
-                } else {
-                    console.warn('No audio URL provided in the response.');
                 }
             } else {
                 setModalMessage(`Error: ${response.message || 'Unknown error'}`);
-                audioService.playAudio('/audio/error.mp3');
             }
         } catch (error) {
             setModalMessage('An unexpected error occurred.');
-            console.error('Error in handleCardClick:', error);
         }
     };
 
     return (
-        <div style={matrixStyles.container}>
-            {cards.map((card, index) => (
-                <div key={index} style={matrixStyles.card}>
-                    <Card
-                        category={card.category}
-                        points={card.points}
-                        onButtonClick={() => handleCardClick(card.category, card.points)}
-                    />
-                </div>
-            ))}
+        <div className="container mt-4">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+                {cards.map((card, index) => (
+                    <div
+                        key={index}
+                        className={`col ${clickedCards.includes(card.category) ? 'disabled-card' : ''}`}
+                        onClick={() => handleCardClick(card.category, card.points)}
+                        style={{cursor: clickedCards.includes(card.category) ? 'not-allowed' : 'pointer'}}
+                    >
+                        <div
+                            className={`card text-center shadow-sm h-100 ${
+                                clickedCards.includes(card.category) ? 'bg-danger text-white' : ''
+                            }`}
+                        >
+                            <div className="card-body d-flex flex-column justify-content-center align-items-center">
+                                <h5 className="card-title">{card.category}</h5>
+                                <p className="card-text ">{card.points} Points</p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
             <Modal
                 isVisible={isModalVisible}
                 onClose={() => setIsModalVisible(false)}
                 message={modalMessage}
-                initialMessage={initialMessage} // Send initialMessage til modal
+                initialMessage={initialMessage}
             />
         </div>
     );
-};
-
-const matrixStyles = {
-    container: {
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-        gap: '10px',
-    },
-    card: {
-        display: 'flex',
-        justifyContent: 'center',
-    },
 };
 
 export default CardMatrix;

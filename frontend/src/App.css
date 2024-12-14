@@ -1,14 +1,13 @@
 :root {
-  /* Primære farver */
   --primary-blue: #dfe0ff;
-  --dark-background: #ffffff;
-  --light-background: #002279 ;
+  --dark-background: #171717;
+  --light-background: #212121;
+  --light-input: #2f2f2f;
   --light-text: #f9f9f9 ;
   --accent-color: #8AC4FF;
   --button-color: #4A90E2;
-  --fade-color: #0f1e29;
+  --fade-color: #000000;
 
-  /* Justering af baggrund og tekst */
   --navbar-text-color: var(--light-text);
 }
 
@@ -22,15 +21,15 @@ html, body {
 }
 
 #root {
-  background-color: var(--light-background) !important;
+  background-color: var(--dark-background) !important;
   min-height: 100vh;
 }
 
 .homepage-container {
-  background-color: var(--light-background);
+  background-color: var(--dark-background);
   color: var(--light-text);
   padding: 20px;
-  min-height: 100vh; /* Fylder hele højden af skærmen */
+  min-height: 100vh;
 }
 
 .homepage-button:hover {
@@ -48,15 +47,15 @@ html, body {
 }
 
 background{
-  background-color: var(--light-background);
+  background-color: var(--dark-background);
   color: var(--light-text);
   padding: 20px;
-  min-height: 100vh; /* Fylder hele højden af skærmen */
+  min-height: 100vh;
 }
 
 h1 {
   color: var(--primary-blue);
-  -webkit-text-stroke: 2px #000; /* Outline farve og tykkelse */
+  -webkit-text-stroke: 2px #000;
   font-size: 3rem !important;
   margin-bottom: 10px;
 }
@@ -66,7 +65,6 @@ p {
   font-size: 1.1rem;
 }
 
-/* Links */
 a {
   color: var(--primary-blue);
 }
@@ -75,7 +73,7 @@ a:hover {
   color: var(--accent-color);
 }
 
-/* Tilføj lidt padding og rundede kanter til input-felter */
+
 input[type="text"],
 input[type="password"] {
   padding: 8px;
@@ -84,18 +82,72 @@ input[type="password"] {
   outline: none;
 }
 
-/* Tilføj rundede kanter og padding til knappen */
+
 button {
   padding: 8px 16px;
   border-radius: 10px;
   border: none;
-  background-color: #007BFF; /* Primær farve til knappen */
+  background-color: #007BFF;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
-/* Hover-effekt til knappen */
+
 button:hover {
-  background-color: #0056b3; /* Mørkere farve ved hover */
+  background-color: #0056b3;
+}
+
+div.card {
+  background: var(--light-background); /* Mørkere baggrund, der passer til layoutet */
+  border: 1px solid #40414F; /* Subtil kant for at adskille kortene */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Dybere skygge for dybde */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border-radius: 12px; /* Blødere afrundede hjørner */
+  padding: 15px; /* Indre mellemrum */
+}
+
+.card-body {
+  padding: 20px;
+  text-align: center;
+
+}
+
+.card-title {
+  color: var(--light-text) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 90%;
+  display: inline-block;
+}
+
+div.card-text {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--light-text) !important;
+  margin-bottom: 0;
+}
+
+
+.card:hover {
+  transform: scale(1.05); /* Løft kortet ved hover */
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); /* Øg skyggen */
+}
+
+.card-text {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0;
+  color: var(--light-text) !important;
+}
+
+.bg-danger.text-white {
+  background-color: #f30d28 !important;
+  color: white !important;
+}
+
+.disabled-card {
+  pointer-events: none;
+  opacity: 0.6;
 }
