@@ -3,21 +3,15 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../utility/AuthContext';
 
 interface GameRoomProps {
-    children: JSX.Element;
+    children: React.ReactElement;
 }
 
 const GameRoomRoute: React.FC<GameRoomProps> = ({ children }) => {
-    const { isLoggedIn, user } = useAuth();
-    console.log('isLoggedIn i komponent:', isLoggedIn);
-
-    console.log(user?.username);
+    const { isLoggedIn } = useAuth();
 
     if (!isLoggedIn) {
-        console.log('User is not logged in');
         return <Navigate to="/" replace />;
     }
-    console.log('User is logged in')
-
     return children;
 };
 

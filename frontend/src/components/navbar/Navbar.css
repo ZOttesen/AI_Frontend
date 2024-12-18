@@ -63,3 +63,49 @@
     margin-right: 15px;
 }
 
+.modal-overlay-register {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container-register {
+    cursor: default;
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: var(--light-background);
+    color: var(--light-text);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    display: flex; /* Gør containeren til en flexbox */
+    flex-direction: column; /* Placer elementerne i en kolonne */
+    justify-content: center; /* Centrer lodret */
+    align-items: center; /* Centrer vandret */
+    gap: 15px; /* Tilføj mellemrum mellem elementerne */
+}
+
+.modal-container-register input{
+    background-color: var(--light-input) !important;
+}
+
+.btn.me-2{
+    color: var(--light-text);
+}
+
+input {
+    background-color: var(--light-input) !important;
+    color: var(--light-text) !important;
+}
+input::placeholder {
+    color: var(--placeholder--text) !important;
+
+}

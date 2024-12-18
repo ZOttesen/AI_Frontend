@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../utility/AuthContext';
 import './Navbar.css';
-import {logoutUser} from "../../utility/APIService";
+import Register from '../register/Register';
 
 const Navbar: React.FC = () => {
     const { user, isLoggedIn, login, logout } = useAuth();
@@ -11,7 +11,7 @@ const Navbar: React.FC = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-
+    const [isRegisterModalOpen, setRegisterModalOpen] = useState(false);
 
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +34,6 @@ const Navbar: React.FC = () => {
     }, []);
 
     // Handle login
-
     const handleLogin = async () => {
         setIsLoading(true);
         try {
@@ -53,25 +52,12 @@ const Navbar: React.FC = () => {
         }
     };
 
-
-    const handleLogout = async () => {
-        try {
-            await logoutUser(); // Kald backend for at slette cookie
-            logout(); // Nulstil AuthContext
-            window.location.href = '/login'; // Omdiriger til login-siden
-        } catch (error) {
-            console.error('Logout error:', error);
-            alert('Failed to log out. Please try again.');
-        }
-    };
-
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
                     <img src="/AILogo.png" alt="App Logo" className="navbar-logo" />
                 </Link>
-
                 <button
                     className="navbar-toggler"
                     type="button"
@@ -88,11 +74,18 @@ const Navbar: React.FC = () => {
                     <ul className="navbar-nav ms-auto">
                         {!isLoggedIn ? (
                             <>
-                                <li className="nav-item">
-                                    <Link to="/register" className="btn me-2">
-                                        Register
-                                    </Link>
-                                </li>
+                                <button
+                                    className="btn me-2"
+                                    onClick={() => setRegisterModalOpen(true)}>
+                                    Register
+                                </button>
+                                {isRegisterModalOpen && (
+                                    <div className="modal-overlay-register" onClick={() => setRegisterModalOpen(false)}>
+                                        <div className="modal-container-register" onClick={(e) => e.stopPropagation()}>
+                                            <Register />
+                                        </div>
+                                    </div>
+                                )}
                                 <li className="nav-item dropdown">
                                     <button
                                         className="btn btn-outline-light"
@@ -115,6 +108,7 @@ const Navbar: React.FC = () => {
                                                     <input
                                                         type="email"
                                                         className="form-control"
+                                                        placeholder='Enter username'
                                                         id="email"
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
@@ -128,6 +122,7 @@ const Navbar: React.FC = () => {
                                                     <input
                                                         type="password"
                                                         className="form-control"
+                                                        placeholder='Enter password'
                                                         id="password"
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}

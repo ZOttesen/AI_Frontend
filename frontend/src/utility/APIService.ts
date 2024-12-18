@@ -1,4 +1,4 @@
-import { User } from './AuthContext';
+import {User} from './AuthContext';
 import {LanguageChoice, PersonalityType} from "./Enums";
 
 export interface Preferences{
@@ -51,13 +51,13 @@ export const fetchUser = async (): Promise<User | null> => {
             credentials: 'include',
         });
         if (response.ok) {
-            const userData = await response.json();
-            return userData; // Returnér kun data
+            console.log("SUP!")
+            return await response.json();
         }
     } catch (error) {
         console.error('Failed to fetch user:', error);
     }
-    return null; // Returnér null ved fejl
+    return null;
 };
 
 

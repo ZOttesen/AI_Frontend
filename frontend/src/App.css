@@ -4,11 +4,16 @@
   --light-background: #212121;
   --light-input: #2f2f2f;
   --light-text: #f9f9f9 ;
+  --placeholder--text: #969494;
   --accent-color: #8AC4FF;
   --button-color: #4A90E2;
   --fade-color: #000000;
 
   --navbar-text-color: var(--light-text);
+}
+
+.container{
+  background: rgba(255,255,255,0);
 }
 
 html, body {
@@ -21,14 +26,7 @@ html, body {
 }
 
 #root {
-  background-color: var(--dark-background) !important;
-  min-height: 100vh;
-}
-
-.homepage-container {
-  background-color: var(--dark-background);
-  color: var(--light-text);
-  padding: 20px;
+  background: linear-gradient(to bottom, var(--dark-background), var(--light-input));
   min-height: 100vh;
 }
 
@@ -57,6 +55,12 @@ h1 {
   color: var(--primary-blue);
   -webkit-text-stroke: 2px #000;
   font-size: 3rem !important;
+  margin-bottom: 10px;
+}
+
+.h5 {
+  color: var(--light-text);
+  font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
@@ -105,11 +109,15 @@ div.card {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   border-radius: 12px; /* Blødere afrundede hjørner */
   padding: 15px; /* Indre mellemrum */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .card-body {
   padding: 20px;
   text-align: center;
+
 
 }
 
@@ -131,8 +139,8 @@ div.card-text {
 
 
 .card:hover {
-  transform: scale(1.05); /* Løft kortet ved hover */
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); /* Øg skyggen */
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
 }
 
 .card-text {
@@ -145,9 +153,123 @@ div.card-text {
 .bg-danger.text-white {
   background-color: #f30d28 !important;
   color: white !important;
+
 }
 
 .disabled-card {
   pointer-events: none;
   opacity: 0.6;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.mb-4 {
+  color: var(--light-text) !important;
+}
+
+.mb-3 {
+  color: var(--light-text) !important;
+}
+
+.custom-placeholder::placeholder {
+  color: #ffffff;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  cursor: default;
+  height: 90%;
+  max-height: 500px;
+  width: 90%;
+  max-width: 500px; /* Justeret for pænere visning */
+  padding: 20px;
+  background-color: var(--light-background);
+  color: var(--light-text);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+div.modal-container {
+  background-color: var(--light-background) !important;
+}
+
+.spinner-container {
+  background-color: var(--light-background); /* Din ønskede baggrundsfarve */
+  border: none !important; /* Fjern enhver border */
+  outline: none !important; /* Fjern outline */
+  box-shadow: none !important; /* Fjern eventuelle skygger */
+  border-radius: 8px; /* Behold afrundede hjørner */
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.modal-container input[type="text"] {
+  background-color: var(--light-input) !important;
+  width: 94%;
+  color: var(--light-text) !important;
+  border: none !important;
+  outline: none !important;
+  position: absolute;
+  bottom: 20px;
+}
+
+.reply-container {
+  background-color: var(--light-background);
+  max-width: 80%;
+  border-radius: 20px;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.message-container {
+  background-color: var(--button-color);
+  max-width: 80%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.outer-container {
+  width: 100%;
+  height: 85%;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+::placeholder {
+  color: var(--placeholder--text);
+  opacity: 1;
+}
+
+::-ms-input-placeholder {
+  color: var(--placeholder--text);
+}
+
+.me-2 {
+  color: var(--light-text);
 }

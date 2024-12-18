@@ -1,33 +1,92 @@
 .homepage-container {
-    background-color: var(--light-background);
-    color: var(--light-text);
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom, var(--dark-background), var(--light-input));
     min-height: 100vh;
+    padding: 20px;
+    color: #fff;
+    font-family: sans-serif;
+    width: 100vw;
+}
+
+.hero-section {
+    text-align: center;
+    margin-top: 60px;
 }
 
 .homepage-title {
-    color: var(--primary-blue);
-    font-size: 2rem;
+    font-size: 3em;
+    font-weight: bold;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.homepage-subtitle {
+    font-size: 1.2em;
+    margin-bottom: 30px;
 }
 
 .homepage-button {
-    background-color: var(--button-color);
-    color: var(--light-text);
+    background-color: #fff;
+    color: #4a90e2;
     border: none;
-    padding: 10px 20px;
+    padding: 15px 30px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
-
 .homepage-button:hover {
-    background-color: var(--accent-color);
+    background-color: #f0f0f0;
 }
 
-a {
-    color: var(--primary-blue);
+.rules-section {
+    background-color: rgba(255,255,255,0.1);
+    margin-top: 50px;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
 }
 
-a:hover {
-    color: var(--accent-color);
+.rules-title {
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.rules-list {
+    list-style-type: decimal;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.rules-list li {
+    margin-bottom: 10px;
+    line-height: 1.4em;
+}
+
+.rules-link {
+    color: #fff;
+    text-decoration: underline;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.rules-link:hover {
+    text-decoration: none;
+}
+
+
+ol{
+    list-style-type: none;
+    font-weight: bold;
+
+}
+
+ol li:not(:last-child){
+    margin-bottom: 20px;
 }

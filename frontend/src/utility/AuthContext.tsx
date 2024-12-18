@@ -1,5 +1,5 @@
 // AuthProvider.tsx
-import React, { createContext, useContext, ReactNode, useEffect } from 'react';
+import React, {createContext, useContext, ReactNode, useEffect, useState} from 'react';
 import { loginUser, logoutUser, fetchUser } from './APIService';
 import { useCacheHandler } from '../hooks/useCacheHandler';
 
@@ -22,22 +22,28 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const { cachedData: user, saveToCache, clearCache, trigger } = useCacheHandler<User | null>('user', null);
+    const [hasFetchedUser, setHasFetchedUser] = useState(false);
 
     useEffect(() => {
         (async () => {
-            if (!user) {
+            if (!user && !hasFetchedUser) {
+                setHasFetchedUser(true);
                 const userData = await fetchUser();
-                if (userData) saveToCache(userData); // Gem data
+                if (userData) {
+                    saveToCache(userData);
+                } else {
+                    clearCache();
+                }
             }
         })();
-    }, [user, saveToCache, trigger]);
+    }, [user, saveToCache, clearCache, trigger, hasFetchedUser]);
 
     const login = async (email: string, password: string): Promise<boolean> => {
         try {
             const result = await loginUser(email, password);
             if (result.success) {
                 const userData = await fetchUser();
-                saveToCache(userData); // Gem data i cachen her
+                saveToCache(userData);
                 return true;
             }
         } catch (error) {
